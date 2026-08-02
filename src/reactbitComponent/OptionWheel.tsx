@@ -217,12 +217,39 @@ const OptionWheel = ({
         const el = rootRef.current;
         if (!el) return;
         const onWheel = (e: WheelEvent) => {
-            e.preventDefault();
             const cfg = cfgRef.current;
             const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaY;
             // Cap each event at one step so notchy mouse wheels move exactly one
             // option per click, while touchpads still scroll continuously.
             const step = Math.max(-1, Math.min(1, delta / cfg.rowH));
+            // Only take control of the wheel while this component is actually
+            // centered on screen. While the page is still scrolling to/from
+            // this section, let the event bubble up to the parent ScrollView
+            // so the page keeps moving; only a wheel sitting near the middle
+            // of the viewport rotates its options.
+            const rect = rootRef.current?.getBoundingClientRect();
+            if (rect) {
+                const viewportCenter = window.innerHeight / 2;
+                const ownCenter = rect.top + rect.height / 2;
+                // Active window: the wheel's center must be within 1/6 of the
+                // viewport height from the viewport center.
+                const activeWindow = window.innerHeight / 6;
+                if (Math.abs(ownCenter - viewportCenter) > activeWindow) return;
+            }
+            // Non-looping wheel: only hand the scroll back to the page once the
+            // wheel has truly reached either end. Compare against the rounded
+            // index (what the user actually sees selected), not the raw
+            // fractional target: while the wheel is still easing toward the
+            // first/last option, targetRef is a decimal like 0.8, and a raw
+            // comparison would already see `0.8 - 1 < 0` and let the page turn
+            // away while the wheel visually sits on the second option.
+            if (!cfg.loop) {
+                const curIndex = Math.round(targetRef.current);
+                const atStart = curIndex <= 0 && step < 0;
+                const atEnd = curIndex >= cfg.count - 1 && step > 0;
+                if (atStart || atEnd) return;
+            }
+            e.preventDefault();
             applyTarget(targetRef.current + step, false);
             if (wheelTimerRef.current) clearTimeout(wheelTimerRef.current);
             wheelTimerRef.current = setTimeout(() => applyTarget(targetRef.current, true), 140);
