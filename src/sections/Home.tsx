@@ -35,7 +35,10 @@ export default function Home({ onNavigateToAbout }: HomeProps) {
                     yoyo={false}
                     pauseOnHover={false}
                     disabled={false}
-                    onClick={onNavigateToAbout}
+                    onClick={() => {
+                        console.log("ShinyText clicked");
+                        onNavigateToAbout?.();
+                    }}
                 />
             </div>
         </div>

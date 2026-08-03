@@ -1,7 +1,10 @@
 export default function More() {
     return (
-        <div className="section-placeholder">
-            Hello
-        </div>
+        <>
+            <div className="page-label">More</div>
+            <div className="section-placeholder">
+                Hello
+            </div>
+        </>
     );
 }

@@ -1,26 +1,39 @@
 /* 主应用布局 */
 
 .app-container {
-    height: 100%;
-    position: relative;
+    /* 固定铺满整个视口,不依赖任何父级高度链 */
+    position: fixed;
+    inset: 0;
     overflow: hidden;
 }
 
 /* 滚动容器 - 相当于原来的 ScrollView */
 .scroll-view {
-    height: 100%;
+    /* 绝对定位铺满容器,保证高度确定,内容超出即可滚动 */
+    position: absolute;
+    inset: 0;
     overflow-y: auto;
-    overscroll-behavior: contain;
-    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /* 隐藏滚动条,仅保留滚动/滑动能力 */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-view::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
 }
 
 /* 每一屏(相当于原来的全屏 View) */
 .page {
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
 }

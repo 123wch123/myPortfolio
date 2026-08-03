@@ -1,4 +1,4 @@
-import { useRef, type MouseEvent as ReactMouseEvent } from 'react';
+import { useCallback, useEffect, useRef, type MouseEvent as ReactMouseEvent } from 'react';
 import './App.css';
 import Menu from './components/Menu';
 import About from './sections/About';
@@ -7,13 +7,30 @@ import Home from './sections/Home';
 import More from './sections/More';
 import Project from './sections/Project';
 
+const PAGE_COUNT = 5;
+
 export default function App() {
     const scrollRef = useRef<HTMLDivElement>(null);
 
+    const getCurrentPage = useCallback(() => {
+        const el = scrollRef.current;
+        if (!el) return 0;
+        return Math.round(el.scrollTop / el.clientHeight);
+    }, []);
+
+    const navigateToPage = useCallback((index: number) => {
+        const el = scrollRef.current;
+        if (!el) return;
+        const target = Math.max(0, Math.min(PAGE_COUNT - 1, index));
+        el.scrollTo({ top: target * el.clientHeight, behavior: 'smooth' });
+    }, []);
+
     // 点击 "View My Work" 平滑滚动到 About 区域(第二屏)
-    const scrollToAbout = () => {
-        scrollRef.current?.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-    };
+    const scrollToAbout = useCallback(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+        el.scrollTo({ top: el.clientHeight, behavior: 'smooth' });
+    }, []);
 
     // 处理菜单锚点跳转(#home / #about / #projects / #contact)
     const handleAnchorNavigation = (e: ReactMouseEvent<HTMLDivElement>) => {
@@ -28,6 +45,30 @@ export default function App() {
         const top = el.offsetTop;
         scrollRef.current.scrollTo({ top, behavior: 'smooth' });
     };
+
+    // 键盘方向键切换页面(桌面端便利)
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            const target = e.target as HTMLElement | null;
+            if (target?.closest('input, textarea, select, [contenteditable="true"]')) return;
+            const currentPage = getCurrentPage();
+            if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                e.preventDefault();
+                navigateToPage(currentPage + 1);
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                navigateToPage(currentPage - 1);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                navigateToPage(0);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                navigateToPage(PAGE_COUNT - 1);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [getCurrentPage, navigateToPage]);
 
     return (
         <div className="app-container" onClick={handleAnchorNavigation}>

@@ -4,7 +4,8 @@
     width: 100%;
     align-self: stretch;
     padding: 24px;
-    background-color: #0c0c0c;
+    /* 与其他页面保持一致的纯黑背景(透出 .page 的黑) */
+    background-color: transparent;
     overflow: hidden;
     position: relative;
 }
@@ -17,6 +18,9 @@
     right: 0;
     bottom: 0;
     z-index: 0;
+    /* 关键:固定全屏背景层不拦截滚轮/触摸事件,
+       否则会阻断 About 等其他页面向下滚动 */
+    pointer-events: none;
 }
 
 /* 前景内容层 */

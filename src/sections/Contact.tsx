@@ -1,7 +1,10 @@
 export default function Contact() {
     return (
-        <div className="section-placeholder">
-            Hello
-        </div>
+        <>
+            <div className="page-label">Contact</div>
+            <div className="section-placeholder">
+                Hello
+            </div>
+        </>
     );
 }

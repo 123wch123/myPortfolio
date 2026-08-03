@@ -33,16 +33,31 @@ a {
     text-align: center;
 }
 
-/* 滚动条美化(可选) */
+/* 页面左上角名称标注 */
+.page-label {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffffff;
+    opacity: 0.6;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* 全局隐藏滚动条(仅保留滚动/滑动能力) */
 ::-webkit-scrollbar {
-    width: 8px;
+    display: none;
+    width: 0;
+    height: 0;
 }
 
-::-webkit-scrollbar-track {
-    background: #000000;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #5227ff;
-    border-radius: 4px;
+html,
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }

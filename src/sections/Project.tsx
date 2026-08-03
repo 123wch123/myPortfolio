@@ -1,10 +1,18 @@
+import FlowingMenu from '@/reactbitComponent/FlowingMenu/FlowingMenu';
 import LightRays from '@/reactbitComponent/LightRays';
-import OptionWheel from '@/reactbitComponent/OptionWheel';
 import './Project.css';
+
+const demoItems = [
+    { link: '#', text: 'Ambient', image: 'https://picsum.photos/600/400?random=1' },
+    { link: '#', text: 'House', image: 'https://picsum.photos/600/400?random=2' },
+    { link: '#', text: 'Techno', image: 'https://picsum.photos/600/400?random=3' },
+    { link: '#', text: 'Jazz', image: 'https://picsum.photos/600/400?random=4' }
+];
 
 export default function Project() {
     return (
         <div className="project-safe-area">
+            <div className="page-label">Projects</div>
             {/* 背景层 - fixed 定位,始终铺满视口 */}
             <div className="project-bg">
                 <LightRays
@@ -26,26 +34,9 @@ export default function Project() {
 
             {/* 前景内容层 */}
             <div className="project-content">
-                <OptionWheel
-                    items={['Ambient', 'House', 'Techno', 'Jazz', 'Lo-Fi', 'Synthwave']}
-                    defaultSelected={2}
-                    textColor="#a6a6a6"
-                    activeColor="#ffffff"
-                    side="left"
-                    fontSize={3}
-                    spacing={1.4}
-                    curve={1}
-                    tilt={6}
-                    blur={2}
-                    fade={0.25}
-                    smoothing={200}
-                    inset={80}
-                    loop={false}
-                    draggable
-                    soundUrl="/assets/sounds/click-soft.mp3"
-                    soundVolume={0.5}
-                    onChange={(index, item) => console.log(index, item)}
-                />
+                <div style={{ height: '600px', width: '100%', position: 'relative' }}>
+                    <FlowingMenu items={demoItems} />
+                </div>
             </div>
         </div>
     );
