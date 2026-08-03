@@ -4,7 +4,6 @@ import {
     KeyboardEvent,
     MouseEventHandler,
     ReactNode,
-    PointerEvent as ReactPointerEvent,
     useEffect,
     useRef,
     useState
@@ -313,7 +312,7 @@ const SpecularButton = ({
     };
 
     /* :active equivalent */
-    const handlePointerDown = (e: ReactPointerEvent<HTMLButtonElement>) => {
+    const handlePointerDown = () => {
         setFocusVisible(false);
         setPressed(true);
     };

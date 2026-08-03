@@ -1,11 +1,7 @@
 export default function Contact() {
-
     return (
-        <div>
-
+        <div className="section-placeholder">
             Hello
-
         </div>
-    )
-
+    );
 }

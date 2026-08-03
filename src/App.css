@@ -1,0 +1,26 @@
+/* 主应用布局 */
+
+.app-container {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 滚动容器 - 相当于原来的 ScrollView */
+.scroll-view {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+}
+
+/* 每一屏(相当于原来的全屏 View) */
+.page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}

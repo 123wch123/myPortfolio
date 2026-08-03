@@ -1,11 +1,7 @@
 export default function About() {
-
     return (
-        <div>
-
+        <div className="section-placeholder">
             Hello
-
         </div>
-    )
-
+    );
 }

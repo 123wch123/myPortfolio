@@ -143,6 +143,11 @@
     opacity: 0;
 }
 
+/* 菜单关闭时禁止面板拦截点击,避免透明面板覆盖页面导致无法交互 */
+.staggered-menu-wrapper:not([data-open]) .staggered-menu-panel {
+    pointer-events: none;
+}
+
 [data-position='left'] .staggered-menu-panel {
     right: auto;
     left: 0;

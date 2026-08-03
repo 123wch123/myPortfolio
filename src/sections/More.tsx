@@ -1,11 +1,7 @@
 export default function More() {
-
     return (
-        <div>
-
+        <div className="section-placeholder">
             Hello
-
         </div>
-    )
-
+    );
 }

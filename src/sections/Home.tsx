@@ -1,20 +1,18 @@
 import GradientText from '@/reactbitComponent/GradientText/GradientText';
 import ShinyText from '@/reactbitComponent/ShinyText/ShinyText';
-import { StyleSheet, Text, View } from "react-native";
-
+import './Home.css';
 
 interface HomeProps {
     onNavigateToAbout?: () => void;
 }
 
 export default function Home({ onNavigateToAbout }: HomeProps) {
-
     return (
-        <View>
-            <View style={styles.container}>
-                <Text style={styles.text}>Chuhong Wang</Text>
+        <div className="home-container">
+            <div className="home-content">
+                <p className="home-text">Chuhong Wang</p>
                 <GradientText
-                    colors={["#5227FF", "#FF9FFC", "#B497CF"]}
+                    colors={['#5227FF', '#FF9FFC', '#B497CF']}
                     animationSpeed={8}
                     showBorder={false}
                     className="custom-class"
@@ -24,10 +22,10 @@ export default function Home({ onNavigateToAbout }: HomeProps) {
                 >
                     Design Portfolio
                 </GradientText>
-            </View>
-            <View style={styles.shinyTextContainer}>
+            </div>
+            <div className="home-shiny-text">
                 <ShinyText
-                    text="View My Work"
+                    text="View My Work ⬇"
                     speed={2}
                     delay={0}
                     color="#b5b5b5"
@@ -39,27 +37,7 @@ export default function Home({ onNavigateToAbout }: HomeProps) {
                     disabled={false}
                     onClick={onNavigateToAbout}
                 />
-            </View>
-        </View>
-    )
-
+            </div>
+        </div>
+    );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingVertical: 220,
-    },
-
-    text: {
-        fontSize: 20,
-        fontWeight: "light",
-        color: "#FFFFFF",
-        fontFamily: "Arial",
-        alignSelf: "center",
-    },
-
-    shinyTextContainer: {
-        alignItems: "center",
-    },
-});
