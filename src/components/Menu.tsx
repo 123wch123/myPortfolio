@@ -1,10 +1,11 @@
 import StaggeredMenu from '@/reactbitComponent/StaggeredMenu';
 
 const menuItems = [
-    { label: 'Home', ariaLabel: 'Go to home page', link: '/#home' },
-    { label: 'About', ariaLabel: 'Learn about us', link: '/#about' },
-    { label: 'Projects', ariaLabel: 'View our projects', link: '/#projects' },
-    { label: 'Contact', ariaLabel: 'Get in touch', link: '/#contact' },
+    { label: 'Home', ariaLabel: 'Go to home page', link: '#home' },
+    { label: 'About', ariaLabel: 'Learn about me', link: '#about' },
+    { label: 'Project', ariaLabel: 'View my projects', link: '#projects' },
+    { label: 'More', ariaLabel: 'See more', link: '#more' },
+    { label: 'Contact', ariaLabel: 'Get in touch', link: '#contact' },
 ];
 
 const socialItems = [

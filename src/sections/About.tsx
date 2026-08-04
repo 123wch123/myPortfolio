@@ -1,7 +1,18 @@
+import LogoLoop from '@/reactbitComponent/LogoLoop/LogoLoop';
 import ProfileCard from '@/reactbitComponent/ProfileCard/ProfileCard';
+import { SiExpo, SiGithub, SiReact, SiTypescript, SiVercel, SiVite } from 'react-icons/si';
 import iconPattern from '../../assets/images/logo-glow.png';
 import avatarImg from '../../assets/images/Profile.jpg';
 import './About.css';
+
+const techLogos = [
+    { node: <SiReact />, title: 'React', href: 'https://react.dev' },
+    { node: <SiTypescript />, title: 'TypeScript', href: 'https://www.typescriptlang.org' },
+    { node: <SiVite />, title: 'Vite', href: 'https://vitejs.dev' },
+    { node: <SiVercel />, title: 'Vercel', href: 'https://vercel.com' },
+    { node: <SiGithub />, title: 'GitHub', href: 'https://github.com' },
+    { node: <SiExpo />, title: 'Expo', href: 'https://expo.dev' }
+];
 
 export default function About() {
     return (
@@ -35,6 +46,18 @@ export default function About() {
                         you'd like to collaborate.
                     </p>
                 </div>
+            </div>
+            <div className="about-logoloop-section">
+                <LogoLoop
+                    logos={techLogos}
+                    speed={60}
+                    direction="left"
+                    logoHeight={40}
+                    gap={56}
+                    hoverSpeed={0}
+                    scaleOnHover
+                    ariaLabel="Technology partners"
+                />
             </div>
         </>
     );
