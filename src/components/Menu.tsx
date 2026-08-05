@@ -11,7 +11,7 @@ const menuItems = [
 const socialItems = [
     { label: 'Twitter', link: 'https://twitter.com' },
     { label: 'GitHub', link: 'https://github.com' },
-    { label: 'LinkedIn', link: 'https://linkedin.com' },
+    { label: 'LinkedIn', link: 'https://www.linkedin.com/in/chuhong-wang-323b98337' },
 ];
 
 export default function Menu() {

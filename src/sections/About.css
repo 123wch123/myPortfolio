@@ -27,15 +27,19 @@
 }
 
 .about-content-section {
-    flex: 1;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: 48px;
+    position: absolute;
+    top: calc(50% - 40px);
+    transform: translateY(-50%);
+    left: calc(48px + 340px + 90px);
+    right: 48px;
+    height: calc(340px / 0.718);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    gap: 24px;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0 8px 0 0;
+    box-sizing: border-box;
 }
 
 .about-title {
@@ -47,10 +51,13 @@
 }
 
 .about-description {
-    font-size: 17px;
-    line-height: 1.8;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.65;
     color: rgba(255, 255, 255, 0.75);
-    margin: 0;
+    margin: 0 0 48px;
+    text-align: justify;
+    text-align-last: left;
 }
 
 .about-logoloop-section {
@@ -65,6 +72,138 @@
 
 .about-logoloop-section:hover {
     opacity: 1;
+}
+
+/* Timeline 时间线样式 */
+.about-timeline {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+}
+
+.about-timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(to bottom,
+            #B497CF99,
+            #B497CF46);
+    border-radius: 2px;
+}
+
+.about-timeline__item {
+    position: relative;
+    padding-left: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-timeline__marker {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #0b0b0b;
+    border: 3px solid #B497CF;
+    box-shadow: 0 0 0 2px rgba(180, 151, 207, 0.15), 0 0 12px rgba(180, 151, 207, 0.35);
+}
+
+.about-timeline__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.about-timeline__year {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B497CF;
+}
+
+.about-timeline__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+.about-timeline__description {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* 详情两栏：左侧 Timeline + 右侧技能 */
+.about-detail-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 32px;
+    width: 100%;
+    align-items: start;
+    margin-top: auto;
+}
+
+.about-detail-grid .about-timeline {
+    max-width: 100%;
+}
+
+.about-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 4px;
+}
+
+.about-skill-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B497CF;
+    margin: 0 0 10px;
+}
+
+.about-skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.about-skill-list li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.about-skill-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #B497CF;
+    opacity: 0.7;
 }
 
 @media (max-width: 900px) {
@@ -84,11 +223,25 @@
     }
 
     .about-content-section {
+        position: static;
+        transform: none;
+        width: 100%;
         max-width: 100%;
+        max-height: none;
         margin-left: 0;
         margin-right: 0;
         align-items: center;
         text-align: center;
+        overflow: visible;
+        padding: 0;
+    }
+
+    .about-content-section {
+        height: auto;
+    }
+
+    .about-timeline {
+        text-align: left;
     }
 
     .about-title {
@@ -97,6 +250,20 @@
 
     .about-description {
         font-size: 15px;
+    }
+
+    .about-timeline {
+        max-width: 100%;
+    }
+
+    .about-timeline__item {
+        padding-left: 28px;
+    }
+
+    .about-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-top: 28px;
     }
 
     .about-logoloop-section {

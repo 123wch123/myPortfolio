@@ -3,10 +3,9 @@ import LightRays from '@/reactbitComponent/LightRays';
 import './Project.css';
 
 const demoItems = [
-    { link: '#', text: 'Ambient', image: 'https://picsum.photos/600/400?random=1' },
-    { link: '#', text: 'House', image: 'https://picsum.photos/600/400?random=2' },
-    { link: '#', text: 'Techno', image: 'https://picsum.photos/600/400?random=3' },
-    { link: '#', text: 'Jazz', image: 'https://picsum.photos/600/400?random=4' }
+    { link: '#', text: 'PRODUCT DESIGN', image: 'https://picsum.photos/600/400?random=1' },
+    { link: '#', text: 'UI/UX DESIGN', image: 'https://picsum.photos/600/400?random=2' },
+    { link: '#', text: 'VR DESIGN', image: 'https://picsum.photos/600/400?random=3' }
 ];
 
 export default function Project() {
