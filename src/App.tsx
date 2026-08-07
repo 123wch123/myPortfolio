@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, type MouseEvent as ReactMouseEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import './App.css';
 import Menu from './components/Menu';
 import About from './sections/About';
@@ -6,11 +6,13 @@ import Contact from './sections/Contact';
 import Home from './sections/Home';
 import More from './sections/More';
 import Project from './sections/Project';
+import VrDesign from './sections/VrDesign';
 
 const PAGE_COUNT = 5;
 
 export default function App() {
     const scrollRef = useRef<HTMLDivElement>(null);
+    const [showVrDesign, setShowVrDesign] = useState(() => window.location.hash === '#vr-design');
 
     const getCurrentPage = useCallback(() => {
         const el = scrollRef.current;
@@ -32,6 +34,21 @@ export default function App() {
         el.scrollTo({ top: el.clientHeight, behavior: 'smooth' });
     }, []);
 
+    // 滚动到指定锚点页面
+    const scrollToHash = useCallback((hash: string) => {
+        const id = hash.replace('#', '');
+        if (!id) return;
+        // 双重 rAF 确保 VR Design 已经卸载后再滚动
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                const el = document.getElementById(id);
+                if (el && scrollRef.current) {
+                    scrollRef.current.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+                }
+            });
+        });
+    }, []);
+
     // 处理菜单锚点跳转(#home / #about / #projects / #contact)
     const handleAnchorNavigation = (e: ReactMouseEvent<HTMLDivElement>) => {
         const target = e.target as HTMLElement;
@@ -39,6 +56,16 @@ export default function App() {
         if (!anchor || !scrollRef.current) return;
         const id = anchor.getAttribute('href')?.slice(1);
         if (!id) return;
+
+        // 如果当前处于 VR Design 页面且菜单点击的是主页面锚点
+        if (showVrDesign) {
+            e.preventDefault();
+            window.location.hash = '';
+            // hashchange 监听器会负责关闭 VR Design 并滚动到目标页面
+            scrollToHash(`#${id}`);
+            return;
+        }
+
         const el = document.getElementById(id);
         if (!el) return;
         e.preventDefault();
@@ -46,9 +73,27 @@ export default function App() {
         scrollRef.current.scrollTo({ top, behavior: 'smooth' });
     };
 
+    // 监听 hash 变化，控制 VR Design 页面显示
+    useEffect(() => {
+        const handleHashChange = () => {
+            const hash = window.location.hash;
+            if (hash === '#vr-design') {
+                setShowVrDesign(true);
+            } else {
+                setShowVrDesign(false);
+                if (hash) {
+                    scrollToHash(hash);
+                }
+            }
+        };
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, [scrollToHash]);
+
     // 键盘方向键切换页面(桌面端便利)
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
+            if (showVrDesign) return;
             const target = e.target as HTMLElement | null;
             if (target?.closest('input, textarea, select, [contenteditable="true"]')) return;
             const currentPage = getCurrentPage();
@@ -68,7 +113,7 @@ export default function App() {
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [getCurrentPage, navigateToPage]);
+    }, [getCurrentPage, navigateToPage, showVrDesign]);
 
     return (
         <div className="app-container" onClick={handleAnchorNavigation}>
@@ -82,13 +127,17 @@ export default function App() {
                 <section id="projects" className="page" style={{ backgroundColor: '#000000' }}>
                     <Project />
                 </section>
-                <section id="more" className="page" style={{ backgroundColor: '#000000' }}>
-                    <More />
-                </section>
                 <section id="contact" className="page" style={{ backgroundColor: '#000000' }}>
                     <Contact />
                 </section>
+                <section id="more" className="page" style={{ backgroundColor: '#000000' }}>
+                    <More />
+                </section>
             </div>
+
+            {/* VR Design 独立页面（覆盖全屏，可滚动查看图片） */}
+            {showVrDesign && <VrDesign />}
+
             {/* 全局悬浮菜单 */}
             <Menu />
         </div>

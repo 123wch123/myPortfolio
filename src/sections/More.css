@@ -1,0 +1,121 @@
+/* More 区域样式 */
+.more-container {
+    flex: 1;
+    width: 100%;
+    align-self: stretch;
+    padding: 24px;
+    background-color: transparent;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.more-layout {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+/* 左侧兴趣爱好区域 */
+.more-interests {
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    color: #fff;
+    z-index: 2;
+}
+
+.more-interests-title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 32px 0;
+    background: linear-gradient(135deg, #B497CF, #5227FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.more-interests-list {
+    list-style: none;
+    margin: 0 0 32px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.more-interests-list li {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    padding-left: 20px;
+    position: relative;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.more-interests-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #B497CF, #5227FF);
+}
+
+.more-interests-note {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* 右侧 DriftWall */
+.more-drift-wall {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+    .more-layout {
+        flex-direction: column;
+    }
+
+    .more-interests {
+        flex: 0 0 auto;
+        padding: 16px 0;
+    }
+
+    .more-interests-title {
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+
+    .more-interests-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .more-drift-wall {
+        min-height: 400px;
+    }
+}

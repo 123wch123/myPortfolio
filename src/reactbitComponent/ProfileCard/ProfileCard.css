@@ -264,7 +264,7 @@
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -313,24 +313,6 @@
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
     line-height: 1;
-}
-
-.pc-contact-btn {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 12px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(10px);
-}
-
-.pc-contact-btn:hover {
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-1px);
-    transition: all 0.2s ease;
 }
 
 .pc-content:not(.pc-avatar-content) {
@@ -445,11 +427,6 @@
     .pc-status {
         font-size: 10px;
     }
-
-    .pc-contact-btn {
-        padding: 6px 12px;
-        font-size: 11px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -492,12 +469,6 @@
     .pc-status {
         font-size: 9px;
     }
-
-    .pc-contact-btn {
-        padding: 5px 10px;
-        font-size: 10px;
-        border-radius: 50px;
-    }
 }
 
 @media (max-width: 320px) {
@@ -533,11 +504,5 @@
 
     .pc-status {
         font-size: 8px;
-    }
-
-    .pc-contact-btn {
-        padding: 4px 8px;
-        font-size: 9px;
-        border-radius: 50px;
     }
 }

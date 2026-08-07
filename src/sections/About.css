@@ -28,8 +28,8 @@
 
 .about-content-section {
     position: absolute;
-    top: calc(50% - 40px);
-    transform: translateY(-50%);
+    top: calc(50% - 40px - min(80svh, 540px) / 2);
+    transform: none;
     left: calc(48px + 340px + 90px);
     right: 48px;
     height: calc(340px / 0.718);
@@ -75,6 +75,15 @@
 }
 
 /* Timeline 时间线样式 */
+.about-timeline-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B497CF;
+    margin: 0 0 10px;
+}
+
 .about-timeline {
     list-style: none;
     margin: 4px 0 0;
@@ -134,7 +143,7 @@
 }
 
 .about-timeline__title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     color: #ffffff;
     margin: 0;
@@ -161,6 +170,10 @@
     max-width: 100%;
 }
 
+.about-timeline-group .about-timeline {
+    margin-top: 4px;
+}
+
 .about-skills {
     display: flex;
     flex-direction: column;
@@ -169,7 +182,7 @@
 }
 
 .about-skill-title {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -189,7 +202,7 @@
 .about-skill-list li {
     position: relative;
     padding-left: 16px;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.7);
 }
@@ -240,7 +253,8 @@
         height: auto;
     }
 
-    .about-timeline {
+    .about-timeline,
+    .about-timeline-title {
         text-align: left;
     }
 

@@ -1,14 +1,22 @@
+import vrDesign1 from '@/assets/portfolioPic/vrDesign/A4 - 23.png';
 import FlowingMenu from '@/reactbitComponent/FlowingMenu/FlowingMenu';
 import LightRays from '@/reactbitComponent/LightRays';
 import './Project.css';
 
-const demoItems = [
-    { link: '#', text: 'PRODUCT DESIGN', image: 'https://picsum.photos/600/400?random=1' },
-    { link: '#', text: 'UI/UX DESIGN', image: 'https://picsum.photos/600/400?random=2' },
-    { link: '#', text: 'VR DESIGN', image: 'https://picsum.photos/600/400?random=3' }
-];
-
 export default function Project() {
+    const demoItems = [
+        { link: '#', text: 'PRODUCT DESIGN', image: 'https://picsum.photos/600/400?random=1' },
+        { link: '#', text: 'UI/UX DESIGN', image: 'https://picsum.photos/600/400?random=2' },
+        {
+            link: '#',
+            text: 'VR DESIGN',
+            image: vrDesign1,
+            onClick: () => {
+                window.location.hash = '#vr-design';
+            }
+        }
+    ];
+
     return (
         <div className="project-safe-area">
             <div className="page-label">Projects</div>

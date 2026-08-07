@@ -18,9 +18,7 @@ interface ProfileCardProps {
     title?: string;
     handle?: string;
     status?: string;
-    contactText?: string;
     showUserInfo?: boolean;
-    onContactClick?: () => void;
 }
 
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
@@ -55,9 +53,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     title = 'Software Engineer',
     handle = 'javicodes',
     status = 'Online',
-    contactText = 'Contact',
-    showUserInfo = true,
-    onContactClick
+    showUserInfo = true
 }) => {
     const wrapRef = useRef<HTMLDivElement>(null);
     const shellRef = useRef<HTMLDivElement>(null);
@@ -324,10 +320,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         [iconUrl, grainUrl, innerGradient, behindGlowColor, behindGlowSize]
     );
 
-    const handleContactClick = useCallback(() => {
-        onContactClick?.();
-    }, [onContactClick]);
-
     return (
         <div ref={wrapRef} className={`pc-card-wrapper ${className}`.trim()} style={cardStyle}>
             {behindGlowEnabled && <div className="pc-behind" />}
@@ -367,15 +359,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                                             <div className="pc-status">{status}</div>
                                         </div>
                                     </div>
-                                    <button
-                                        className="pc-contact-btn"
-                                        onClick={handleContactClick}
-                                        style={{ pointerEvents: 'auto' }}
-                                        type="button"
-                                        aria-label={`Contact ${name || 'user'}`}
-                                    >
-                                        {contactText}
-                                    </button>
                                 </div>
                             )}
                         </div>

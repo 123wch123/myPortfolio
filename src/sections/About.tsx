@@ -48,12 +48,10 @@ export default function About() {
                         title=" "
                         handle="chuhongwang"
                         status="Online"
-                        contactText="Contact Me"
                         avatarUrl={avatarImg}
                         iconUrl={iconPattern}
                         behindGlowEnabled
                         innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
-                        onContactClick={() => console.log('Contact clicked')}
                     />
                 </div>
                 <div className="about-content-section">
@@ -62,18 +60,21 @@ export default function About() {
                         Hi, I'm Chuhong Wang, currently pursuing a Master's in Intelligent Systems Design at The Hong Kong Polytechnic University, graduating in 2026. With a background in Industrial Design, I have internship experience at Samsung and Tuzhan AI, where I worked on user research, interaction design, AI products, and design systems. I enjoy combining industrial design with UX thinking to create meaningful user experiences, and I'm always eager to learn new design methods and technologies.
                     </p>
                     <div className="about-detail-grid">
-                        <ol className="about-timeline">
-                            {timeline.map((item) => (
-                                <li key={item.year} className="about-timeline__item">
-                                    <span className="about-timeline__marker" aria-hidden="true" />
-                                    <div className="about-timeline__content">
-                                        <span className="about-timeline__year">{item.year}</span>
-                                        <h3 className="about-timeline__title">{item.title}</h3>
-                                        <p className="about-timeline__description">{item.description}</p>
-                                    </div>
-                                </li>
-                            ))}
-                        </ol>
+                        <div className="about-timeline-group">
+                            <h3 className="about-timeline-title">EXPERIENCE</h3>
+                            <ol className="about-timeline">
+                                {timeline.map((item) => (
+                                    <li key={item.year} className="about-timeline__item">
+                                        <span className="about-timeline__marker" aria-hidden="true" />
+                                        <div className="about-timeline__content">
+                                            <span className="about-timeline__year">{item.year}</span>
+                                            <h3 className="about-timeline__title">{item.title}</h3>
+                                            <p className="about-timeline__description">{item.description}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
                         <div className="about-skills">
                             <div className="about-skill-group">
                                 <h3 className="about-skill-title">KEY STRENGTHS</h3>

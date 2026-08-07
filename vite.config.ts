@@ -8,9 +8,9 @@ export default defineConfig({
     plugins: [react()],
     base: '/myPortfolio/',
     resolve: {
-        alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url)),
-            '@/assets': fileURLToPath(new URL('./assets', import.meta.url)),
-        },
+        alias: [
+            { find: '@/assets', replacement: fileURLToPath(new URL('./assets', import.meta.url)) },
+            { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+        ],
     },
 });
