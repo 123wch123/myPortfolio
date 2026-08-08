@@ -16,42 +16,49 @@
     height: 0;
 }
 
-.vr-design-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+/* 左上角圆形返回按钮(与 Product Design 详情页一致) */
+.vr-design-back-circle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 110;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 151, 207, 0.4);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 24px 40px;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(180, 151, 207, 0.2);
-}
-
-.vr-design-back {
-    background: transparent;
-    border: 1px solid rgba(180, 151, 207, 0.4);
-    color: #fff;
-    font-size: 14px;
-    padding: 8px 20px;
-    border-radius: 24px;
-    cursor: pointer;
+    justify-content: center;
     transition: all 0.2s ease;
-    letter-spacing: 1px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
-.vr-design-back:hover {
+.vr-design-back-circle:hover {
     background: rgba(180, 151, 207, 0.15);
     border-color: #B497CF;
 }
 
+.vr-design-info {
+    text-align: center;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+}
+
 .vr-design-title {
     margin: 0;
-    color: #fff;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 600;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     background: linear-gradient(135deg, #B497CF, #5227FF);
     -webkit-background-clip: text;
@@ -59,8 +66,40 @@
     background-clip: text;
 }
 
-.vr-design-spacer {
-    width: 60px;
+.vr-design-desc {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.vr-design-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 56px 40px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+.vr-design-video-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111;
+    border: 1px solid rgba(180, 151, 207, 0.2);
+    box-shadow: 0 20px 60px rgba(180, 151, 207, 0.1);
+}
+
+.vr-design-video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
 .vr-design-images {
@@ -68,9 +107,6 @@
     flex-direction: column;
     align-items: center;
     gap: 48px;
-    padding: 48px 40px 80px;
-    max-width: 1400px;
-    margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
 }
@@ -118,22 +154,21 @@
 
 /* 响应式 */
 @media (max-width: 768px) {
-    .vr-design-header {
-        padding: 16px 20px;
+    .vr-design-back-circle {
+        top: 16px;
+        left: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
     }
 
-    .vr-design-title {
-        font-size: 18px;
-        letter-spacing: 2px;
-    }
-
-    .vr-design-images {
-        padding: 24px 16px 60px;
+    .vr-design-content {
+        padding: 32px 16px 40px;
         gap: 32px;
     }
 
-    .vr-design-spacer {
-        width: 40px;
+    .vr-design-title {
+        font-size: 22px;
     }
 
     .vr-design-image {

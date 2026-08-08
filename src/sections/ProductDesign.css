@@ -1,0 +1,217 @@
+/* Product Design 独立页面样式 */
+.product-design-page {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: #000000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.product-design-page::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.product-design-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 40px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(180, 151, 207, 0.2);
+}
+
+.product-design-title {
+    margin: 0;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #B497CF, #5227FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.product-design-spacer {
+    width: 60px;
+}
+
+.product-design-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 56px 40px;
+    min-height: calc(100vh - 170px);
+}
+
+.product-design-footer {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0 60px;
+}
+
+/* 项目详情视图 —— 参考 VR Design 的 PDF 式上下翻页展示 */
+.product-detail-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 40px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+.product-detail-info {
+    text-align: center;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+}
+
+.product-detail-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #B497CF, #5227FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.product-detail-desc {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.product-detail-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.product-detail-image-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.product-detail-image {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #111;
+    box-shadow: 0 20px 60px rgba(180, 151, 207, 0.1);
+}
+
+.product-detail-back-circle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 110;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 151, 207, 0.4);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.product-detail-back-circle:hover {
+    background: rgba(180, 151, 207, 0.15);
+    border-color: #B497CF;
+}
+
+.product-detail-back {
+    background: transparent;
+    border: 1px solid rgba(180, 151, 207, 0.4);
+    color: #fff;
+    font-size: 14px;
+    padding: 12px 32px;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.product-detail-back:hover {
+    background: rgba(180, 151, 207, 0.15);
+    border-color: #B497CF;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .product-design-header {
+        padding: 16px 20px;
+    }
+
+    .product-design-title {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    .product-design-spacer {
+        width: 40px;
+    }
+
+    .product-design-content {
+        padding: 32px 16px 48px;
+        min-height: auto;
+    }
+
+    .product-detail-back-circle {
+        top: 16px;
+        left: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+    }
+
+    .product-detail-content {
+        padding: 32px 16px 40px;
+        gap: 32px;
+    }
+
+    .product-detail-title {
+        font-size: 22px;
+    }
+
+    .product-detail-image {
+        min-height: 250px;
+    }
+}

@@ -5,14 +5,19 @@ import About from './sections/About';
 import Contact from './sections/Contact';
 import Home from './sections/Home';
 import More from './sections/More';
+import ProductDesign from './sections/ProductDesign';
 import Project from './sections/Project';
 import VrDesign from './sections/VrDesign';
 
 const PAGE_COUNT = 5;
+const OVERLAY_HASHES = ['#vr-design', '#product-design'];
 
 export default function App() {
     const scrollRef = useRef<HTMLDivElement>(null);
-    const [showVrDesign, setShowVrDesign] = useState(() => window.location.hash === '#vr-design');
+    const [overlay, setOverlay] = useState<string | null>(() => {
+        const hash = window.location.hash;
+        return OVERLAY_HASHES.includes(hash) ? hash.slice(1) : null;
+    });
 
     const getCurrentPage = useCallback(() => {
         const el = scrollRef.current;
@@ -54,14 +59,25 @@ export default function App() {
         const target = e.target as HTMLElement;
         const anchor = target.closest('a[href^="#"]');
         if (!anchor || !scrollRef.current) return;
-        const id = anchor.getAttribute('href')?.slice(1);
+        const id = anchor.getAttribute('href')?.slice(1) ?? '';
+
+        // 独立页面打开时：占位链接(#)不触发跳转，保持页面打开
+        if (overlay && !id) {
+            e.preventDefault();
+            return;
+        }
         if (!id) return;
 
-        // 如果当前处于 VR Design 页面且菜单点击的是主页面锚点
-        if (showVrDesign) {
+        // 如果当前处于独立页面(VR Design / Product Design)且点击的是主页面锚点
+        if (overlay) {
+            // 点击的是另一个独立页面锚点 → 直接切换独立页面
+            if (OVERLAY_HASHES.includes(`#${id}`)) {
+                window.location.hash = `#${id}`;
+                return;
+            }
             e.preventDefault();
             window.location.hash = '';
-            // hashchange 监听器会负责关闭 VR Design 并滚动到目标页面
+            // hashchange 监听器会负责关闭独立页面并滚动到目标页面
             scrollToHash(`#${id}`);
             return;
         }
@@ -73,14 +89,14 @@ export default function App() {
         scrollRef.current.scrollTo({ top, behavior: 'smooth' });
     };
 
-    // 监听 hash 变化，控制 VR Design 页面显示
+    // 监听 hash 变化，控制独立页面(VR Design / Product Design)显示
     useEffect(() => {
         const handleHashChange = () => {
             const hash = window.location.hash;
-            if (hash === '#vr-design') {
-                setShowVrDesign(true);
+            if (OVERLAY_HASHES.includes(hash)) {
+                setOverlay(hash.slice(1));
             } else {
-                setShowVrDesign(false);
+                setOverlay(null);
                 if (hash) {
                     scrollToHash(hash);
                 }
@@ -93,7 +109,7 @@ export default function App() {
     // 键盘方向键切换页面(桌面端便利)
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (showVrDesign) return;
+            if (overlay) return;
             const target = e.target as HTMLElement | null;
             if (target?.closest('input, textarea, select, [contenteditable="true"]')) return;
             const currentPage = getCurrentPage();
@@ -113,7 +129,7 @@ export default function App() {
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [getCurrentPage, navigateToPage, showVrDesign]);
+    }, [getCurrentPage, navigateToPage, overlay]);
 
     return (
         <div className="app-container" onClick={handleAnchorNavigation}>
@@ -136,7 +152,10 @@ export default function App() {
             </div>
 
             {/* VR Design 独立页面（覆盖全屏，可滚动查看图片） */}
-            {showVrDesign && <VrDesign />}
+            {overlay === 'vr-design' && <VrDesign />}
+
+            {/* Product Design 独立页面（AccordionGallery 项目画廊） */}
+            {overlay === 'product-design' && <ProductDesign />}
 
             {/* 全局悬浮菜单 */}
             <Menu />

@@ -5,7 +5,14 @@ import './Project.css';
 
 export default function Project() {
     const demoItems = [
-        { link: '#', text: 'PRODUCT DESIGN', image: 'https://picsum.photos/600/400?random=1' },
+        {
+            link: '#',
+            text: 'PRODUCT DESIGN',
+            image: 'https://picsum.photos/600/400?random=1',
+            onClick: () => {
+                window.location.hash = '#product-design';
+            }
+        },
         { link: '#', text: 'UI/UX DESIGN', image: 'https://picsum.photos/600/400?random=2' },
         {
             link: '#',
