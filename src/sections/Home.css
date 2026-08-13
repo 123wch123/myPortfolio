@@ -9,7 +9,7 @@
     height: 100%;
 }
 
-/* 文字内容层 - 定位在 Design Portfolio 粒子文字的上方 */
+/* 文字内容层 - 定位在 Design Portfolio Stroke 文字的上方 */
 .home-content {
     position: absolute;
     left: 50%;
@@ -30,8 +30,8 @@
     margin-bottom: 16px;
 }
 
-/* 粒子层 - 覆盖整个 Home 页面，位于其他元素之下产生重叠 */
-.home-particle-text {
+/* Stroke 文字层 - 覆盖整个 Home 页面，位于其他元素之下产生重叠 */
+.home-stroke-text {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -40,6 +40,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* 超大屏限制 StrokeText 最大宽度，避免词标拉伸过大 */
+.home-stroke-text .stroke-text {
+    width: min(100%, 1400px);
 }
 
 .home-shiny-text {

@@ -1,5 +1,5 @@
-import ParticleText from '@/reactbitComponent/ParticleText/ParticleText';
 import ShinyText from '@/reactbitComponent/ShinyText/ShinyText';
+import StrokeText from '@/reactbitComponent/StrokeText/StrokeText';
 import './Home.css';
 
 interface HomeProps {
@@ -13,25 +13,22 @@ export default function Home({ onNavigateToAbout }: HomeProps) {
                 <p className="home-text">Chuhong Wang</p>
             </div>
 
-            {/* 粒子层 - 覆盖整个 Home 页，与其他元素产生重叠 */}
-            <div className="home-particle-text">
-                <ParticleText
+            {/* Stroke 文字层 - 覆盖整个 Home 页，与其他元素产生重叠 */}
+            <div className="home-stroke-text">
+                <StrokeText
                     text="Design Portfolio"
-                    particleSize={2}
-                    density={4}
-                    color="#ffffff"
-                    highlightColor="#5227FF"
-                    scatter={180}
-                    gatherDuration={1600}
-                    stagger={420}
-                    pointerRepel={40}
-                    repelRadius={120}
-                    idleDrift={0.7}
+                    strokeColor="#A78BFA"
+                    fillColor="#F8FAFC"
+                    strokeWidth={1.4}
+                    drawDuration={1.6}
+                    fillDelay={0.2}
+                    stagger={0.05}
+                    ease="power2.out"
                     trigger="mount"
-                    fontSize={140}
-                    fontWeight={300}
-                    fontFamily="Arial"
-                    glow
+                    fillMode="wipe"
+                    fontSize={128}
+                    fontWeight={800}
+                    letterSpacing={-4}
                 />
             </div>
             <div className="home-shiny-text">

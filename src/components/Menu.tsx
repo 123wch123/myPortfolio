@@ -10,7 +10,7 @@ const menuItems = [
 
 const socialItems = [
     { label: 'Twitter', link: 'https://twitter.com' },
-    { label: 'GitHub', link: 'https://github.com' },
+    { label: 'GitHub', link: 'https://github.com/123wch123' },
     { label: 'LinkedIn', link: 'https://www.linkedin.com/in/chuhong-wang-323b98337' },
 ];
 
