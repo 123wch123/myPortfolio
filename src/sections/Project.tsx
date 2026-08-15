@@ -1,4 +1,6 @@
-import vrDesign1 from '@/assets/portfolioPic/vrDesign/A4 - 23.png';
+import productImg from '@/assets/images/product.png';
+import uiuxImg from '@/assets/images/UIUX.png';
+import vrImg from '@/assets/images/VR.png';
 import FlowingMenu from '@/reactbitComponent/FlowingMenu/FlowingMenu';
 import LightRays from '@/reactbitComponent/LightRays';
 import './Project.css';
@@ -8,16 +10,16 @@ export default function Project() {
         {
             link: '#',
             text: 'PRODUCT DESIGN',
-            image: 'https://picsum.photos/600/400?random=1',
+            image: productImg,
             onClick: () => {
                 window.location.hash = '#product-design';
             }
         },
-        { link: '#', text: 'UI/UX DESIGN', image: 'https://picsum.photos/600/400?random=2' },
+        { link: '#', text: 'UI/UX DESIGN', image: uiuxImg },
         {
             link: '#',
             text: 'VR DESIGN',
-            image: vrDesign1,
+            image: vrImg,
             onClick: () => {
                 window.location.hash = '#vr-design';
             }

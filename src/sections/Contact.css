@@ -1,0 +1,119 @@
+/* Contact 区域样式 */
+.contact-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding: 60px 48px;
+    position: relative;
+}
+
+/* 左侧：联系方式 */
+.contact-info {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 36px;
+}
+
+.contact-title {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0 0 12px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contact-label {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B497CF;
+}
+
+.contact-value {
+    font-size: 20px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* 右侧：二维码卡片 */
+.contact-qr-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+}
+
+.contact-qr-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 24px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.contact-qr-card:hover {
+    border-color: rgba(180, 151, 207, 0.6);
+    background: rgba(180, 151, 207, 0.06);
+}
+
+.contact-qr-account {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+}
+
+.contact-qr-image {
+    width: 260px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    background: #ffffff;
+}
+
+/* 移动端适配 */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+        gap: 48px;
+        padding: 48px 24px;
+        overflow-y: auto;
+        justify-content: flex-start;
+    }
+
+    .contact-info {
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-title {
+        font-size: 32px;
+    }
+
+    .contact-qr-section {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .contact-qr-image {
+        width: 220px;
+    }
+}
