@@ -65,7 +65,7 @@
         rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px) calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px;
     transition: transform 1s ease;
     transform: translateZ(0) rotateX(0deg) rotateY(0deg);
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(5, 11, 24, 0.9);
     backface-visibility: hidden;
     overflow: hidden;
 }
@@ -96,7 +96,7 @@
     inset: 0;
     position: absolute;
     background-image: var(--inner-gradient);
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(5, 11, 24, 0.9);
     transform: none;
 }
 
@@ -227,7 +227,6 @@
 }
 
 .pc-avatar-content {
-    mix-blend-mode: luminosity;
     overflow: visible;
     transform: translateZ(2);
     backface-visibility: hidden;
@@ -340,7 +339,7 @@
     margin: 0;
     font-size: min(5svh, 3em);
     margin: 0;
-    background-image: linear-gradient(to bottom, #fff, #6f6fbe);
+    background-image: linear-gradient(to bottom, #fff, #5DA9E9);
     background-size: 1em 1.5em;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -355,7 +354,7 @@
     font-size: 16px;
     margin: 0 auto;
     width: min-content;
-    background-image: linear-gradient(to bottom, #fff, #4a4ac0);
+    background-image: linear-gradient(to bottom, #fff, #3F7BD6);
     background-size: 1em 1.5em;
     -webkit-text-fill-color: transparent;
     background-clip: text;

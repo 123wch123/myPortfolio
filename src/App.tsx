@@ -134,19 +134,19 @@ export default function App() {
     return (
         <div className="app-container" onClick={handleAnchorNavigation}>
             <div ref={scrollRef} className="scroll-view">
-                <section id="home" className="page" style={{ backgroundColor: '#000000' }}>
+                <section id="home" className="page">
                     <Home onNavigateToAbout={scrollToAbout} />
                 </section>
-                <section id="about" className="page" style={{ backgroundColor: '#000000' }}>
+                <section id="about" className="page">
                     <About />
                 </section>
-                <section id="projects" className="page" style={{ backgroundColor: '#000000' }}>
+                <section id="projects" className="page">
                     <Project />
                 </section>
-                <section id="contact" className="page" style={{ backgroundColor: '#000000' }}>
+                <section id="contact" className="page">
                     <Contact />
                 </section>
-                <section id="more" className="page" style={{ backgroundColor: '#000000' }}>
+                <section id="more" className="page">
                     <More />
                 </section>
             </div>

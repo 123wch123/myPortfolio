@@ -1,5 +1,17 @@
 /* 全局样式 - MyPorfolio React Web */
 
+/* 设计系统 Token
+ * 背景：每页统一为纯色 --bg-base(深海军蓝，取代纯黑)，与 Home 页 Prism 透出的背景色一致，分页切换无缝衔接。
+ * 主题色：紫色系 → 蓝色系，主强调色 #71C4FF(浅蓝)与深端 #2F6BFF(深蓝)取自 Prism 光晕中的蓝色。
+ */
+:root {
+    --bg-base: #050B18;        /* 页面主背景 */
+    --bg-surface: #0A1224;     /* 卡片/图块等抬升表面 */
+    --bg-overlay: #060D1F;     /* 半透明遮罩/悬停底色 */
+    --accent: #71C4FF;         /* 主强调色(浅蓝) */
+    --accent-deep: #2F6BFF;    /* 强调色渐变深端(深蓝) */
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,7 +26,7 @@ body,
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #000000;
+    background-color: var(--bg-base);
     color: #ffffff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -51,7 +51,7 @@ export default function About() {
                         avatarUrl={avatarImg}
                         iconUrl={iconPattern}
                         behindGlowEnabled
-                        innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
+                        innerGradient="linear-gradient(145deg,#1E3A8A8c 0%,#71C4FF44 100%)"
                     />
                 </div>
                 <div className="about-content-section">

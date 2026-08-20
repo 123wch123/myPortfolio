@@ -136,8 +136,8 @@ export default function ProductDesign() {
                             defaultIndex={0}
                             expandRatio={0.52}
                             trigger="hover"
-                            accentColor="#B497CF"
-                            overlayColor="#060010"
+                            accentColor="#71C4FF"
+                            overlayColor="#060D1F"
                             textColor="#ffffff"
                             grayscale
                             showLabels

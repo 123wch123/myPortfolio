@@ -80,7 +80,7 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #B497CF;
+    color: var(--accent);
     margin: 0 0 10px;
 }
 
@@ -104,8 +104,8 @@
     bottom: 6px;
     width: 2px;
     background: linear-gradient(to bottom,
-            #B497CF99,
-            #B497CF46);
+            #71C4FF99,
+            #71C4FF46);
     border-radius: 2px;
 }
 
@@ -123,9 +123,9 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #0b0b0b;
-    border: 3px solid #B497CF;
-    box-shadow: 0 0 0 2px rgba(180, 151, 207, 0.15), 0 0 12px rgba(180, 151, 207, 0.35);
+    background: var(--bg-surface);
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 0 2px rgba(113, 196, 255, 0.15), 0 0 12px rgba(113, 196, 255, 0.35);
 }
 
 .about-timeline__content {
@@ -139,7 +139,7 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #B497CF;
+    color: var(--accent);
 }
 
 .about-timeline__title {
@@ -186,7 +186,7 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #B497CF;
+    color: var(--accent);
     margin: 0 0 10px;
 }
 
@@ -215,7 +215,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #B497CF;
+    background: var(--accent);
     opacity: 0.7;
 }
 

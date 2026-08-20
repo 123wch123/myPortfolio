@@ -21,7 +21,7 @@ interface ProfileCardProps {
     showUserInfo?: boolean;
 }
 
-const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
+const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#1E3A8A8c 0%,#71C4FF44 100%)';
 
 const ANIMATION_CONFIG = {
     INITIAL_DURATION: 1200,

@@ -36,12 +36,29 @@ const ShinyText: React.FC<ShinyTextProps> = ({
     const elapsedRef = useRef(0);
     const lastTimeRef = useRef<number | null>(null);
     const directionRef = useRef(direction === 'left' ? 1 : -1);
+    const rootRef = useRef<HTMLSpanElement | null>(null);
+    const visibleRef = useRef(true);
 
     const animationDuration = speed * 1000;
     const delayDuration = delay * 1000;
 
+    // 页面始终挂载所有分屏，Home 滚出视口后暂停动画，避免白耗 CPU
+    useEffect(() => {
+        if (typeof window === 'undefined' || typeof IntersectionObserver === 'undefined') return;
+        const node = rootRef.current;
+        if (!node) return;
+        const io = new IntersectionObserver(
+            entries => {
+                visibleRef.current = entries.some(e => e.isIntersecting);
+            },
+            { root: null, threshold: 0 }
+        );
+        io.observe(node);
+        return () => io.disconnect();
+    }, []);
+
     useAnimationFrame(time => {
-        if (disabled || isPaused) {
+        if (disabled || isPaused || !visibleRef.current) {
             lastTimeRef.current = null;
             return;
         }
@@ -121,6 +138,7 @@ const ShinyText: React.FC<ShinyTextProps> = ({
 
     return (
         <motion.span
+            ref={rootRef}
             className={`shiny-text ${className}`}
             style={{ ...gradientStyle, backgroundPosition }}
             onMouseEnter={handleMouseEnter}

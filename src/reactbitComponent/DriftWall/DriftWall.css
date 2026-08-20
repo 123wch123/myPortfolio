@@ -12,7 +12,7 @@
     --dw-lift: 64px;
     --dw-dim: 0.55;
     --dw-gray: 0;
-    --dw-overlay: #060010;
+    --dw-overlay: var(--bg-overlay);
     --dw-edge: 40%;
     -webkit-mask-image:
         radial-gradient(ellipse 78% 82% at 50% 46%, #000 var(--dw-edge), transparent 100%),
@@ -65,7 +65,7 @@
     display: block;
     border-radius: var(--dw-radius);
     overflow: hidden;
-    background: #0b0b12;
+    background: var(--bg-surface);
     opacity: var(--dw-dim);
     transform: translateZ(0);
     pointer-events: none;

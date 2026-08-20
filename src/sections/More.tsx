@@ -58,7 +58,7 @@ export default function More() {
                         lift={64}
                         fade={0.6}
                         dim={0.55}
-                        overlayColor="#060010"
+                        overlayColor="#060D1F"
                     />
                 </div>
             </div>

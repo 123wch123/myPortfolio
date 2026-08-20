@@ -26,8 +26,8 @@ export default function Menu() {
             menuButtonColor="#ffffff"
             openMenuButtonColor="#000"
             changeMenuColorOnOpen={true}
-            colors={['#B497CF', '#5227FF']}
-            accentColor="#5227FF"
+            colors={['#71C4FF', '#2F6BFF']}
+            accentColor="#2F6BFF"
             onMenuOpen={() => console.log('Menu opened')}
             onMenuClose={() => console.log('Menu closed')}
         />

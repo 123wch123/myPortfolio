@@ -36,4 +36,6 @@
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
+    /* 纯色背景：与 Home 页 Prism 的背景色(--bg-base)一致，分页滚动切换时无缝衔接 */
+    background: var(--bg-base);
 }

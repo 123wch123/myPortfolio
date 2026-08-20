@@ -3,7 +3,7 @@
     position: fixed;
     inset: 0;
     z-index: 30;
-    background: #000000;
+    background: var(--bg-base);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -25,8 +25,8 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 1px solid rgba(180, 151, 207, 0.4);
-    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(113, 196, 255, 0.4);
+    background: rgba(5, 11, 24, 0.6);
     color: #fff;
     font-size: 26px;
     line-height: 1;
@@ -40,8 +40,8 @@
 }
 
 .vr-design-back-circle:hover {
-    background: rgba(180, 151, 207, 0.15);
-    border-color: #B497CF;
+    background: rgba(113, 196, 255, 0.15);
+    border-color: var(--accent);
 }
 
 .vr-design-info {
@@ -60,7 +60,7 @@
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #B497CF, #5227FF);
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -90,9 +90,9 @@
     aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
-    background: #111;
-    border: 1px solid rgba(180, 151, 207, 0.2);
-    box-shadow: 0 20px 60px rgba(180, 151, 207, 0.1);
+    background: var(--bg-surface);
+    border: 1px solid rgba(113, 196, 255, 0.2);
+    box-shadow: 0 20px 60px rgba(113, 196, 255, 0.1);
 }
 
 .vr-design-video {
@@ -125,8 +125,8 @@
     min-height: 400px;
     object-fit: contain;
     border-radius: 12px;
-    background: #111;
-    box-shadow: 0 20px 60px rgba(180, 151, 207, 0.1);
+    background: var(--bg-surface);
+    box-shadow: 0 20px 60px rgba(113, 196, 255, 0.1);
 }
 
 .vr-design-footer {
@@ -137,7 +137,7 @@
 
 .vr-design-back-bottom {
     background: transparent;
-    border: 1px solid rgba(180, 151, 207, 0.4);
+    border: 1px solid rgba(113, 196, 255, 0.4);
     color: #fff;
     font-size: 14px;
     padding: 12px 32px;
@@ -148,8 +148,8 @@
 }
 
 .vr-design-back-bottom:hover {
-    background: rgba(180, 151, 207, 0.15);
-    border-color: #B497CF;
+    background: rgba(113, 196, 255, 0.15);
+    border-color: var(--accent);
 }
 
 /* 响应式 */

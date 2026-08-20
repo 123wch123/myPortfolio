@@ -9,16 +9,32 @@
     height: 100%;
 }
 
-/* 文字内容层 - 定位在 Design Portfolio Stroke 文字的上方 */
+/* Prism 背景层 - 铺满整个 Home 页，位于所有文字之下 */
+.home-prism {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 文字内容层 - 位于 Design Portfolio Stroke 文字的下方，左为名字，右为年份 */
 .home-content {
     position: absolute;
-    left: 50%;
-    top: 38%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    right: 0;
+    top: 60%;
+    /* 上移 4vh（仅这部分与 Stroke 文字上移，View My Work 保持原位） */
+    transform: translateY(calc(-50% - 4vh));
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    /* 左右内边距由 Home.tsx 测量 Stroke 文字边缘后内联设置，保证与文字对齐 */
+    padding: 0;
     z-index: 2;
+    box-sizing: border-box;
 }
 
 .home-text {
@@ -27,7 +43,16 @@
     color: #ffffff;
     font-family: Arial, sans-serif;
     text-align: center;
-    margin-bottom: 16px;
+    margin: 0;
+}
+
+.home-year {
+    font-size: 20px;
+    font-weight: 300;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
 }
 
 /* Stroke 文字层 - 覆盖整个 Home 页面，位于其他元素之下产生重叠 */
@@ -40,6 +65,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* 与文字内容层一起上移 4vh（View My Work 保持原位） */
+    transform: translateY(-4vh);
 }
 
 /* 超大屏限制 StrokeText 最大宽度，避免词标拉伸过大 */
