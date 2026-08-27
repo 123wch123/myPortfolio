@@ -77,6 +77,9 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         const INITIAL_TAU = 0.6;
         let initialUntil = 0;
 
+        /** 已写入 wrapper 的 CSS 变量缓存：收敛过程中值未变化时跳过 setProperty，避免无谓样式重算 */
+        const lastAppliedVars: Record<string, string> = {};
+
         const setVarsFromXY = (x: number, y: number) => {
             const shell = shellRef.current;
             const wrap = wrapRef.current;
@@ -103,7 +106,11 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 '--rotate-y': `${round(centerY / 4)}deg`
             } as Record<string, string>;
 
-            for (const [k, v] of Object.entries(properties)) wrap.style.setProperty(k, v);
+            for (const [k, v] of Object.entries(properties)) {
+                if (lastAppliedVars[k] === v) continue;
+                lastAppliedVars[k] = v;
+                wrap.style.setProperty(k, v);
+            }
         };
 
         const step = (ts: number) => {
@@ -122,7 +129,9 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
             const stillFar = Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05;
 
-            if (stillFar || document.hasFocus()) {
+            // 只在仍需要收敛动画时继续 rAF：指针静止/数值收敛后立即停表，
+            // 避免 ProfileCard 常驻循环占用主线程而拖累页面其它动画（如 LogoLoop）
+            if (stillFar) {
                 rafId = requestAnimationFrame(step);
             } else {
                 running = false;

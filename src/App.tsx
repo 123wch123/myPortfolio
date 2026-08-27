@@ -6,11 +6,12 @@ import Contact from './sections/Contact';
 import Home from './sections/Home';
 import More from './sections/More';
 import ProductDesign from './sections/ProductDesign';
+import UiUxDesign from './sections/UiUxDesign';
 import Project from './sections/Project';
 import VrDesign from './sections/VrDesign';
 
 const PAGE_COUNT = 5;
-const OVERLAY_HASHES = ['#vr-design', '#product-design'];
+const OVERLAY_HASHES = ['#vr-design', '#product-design', '#uiux-design'];
 
 export default function App() {
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -156,6 +157,9 @@ export default function App() {
 
             {/* Product Design 独立页面（AccordionGallery 项目画廊） */}
             {overlay === 'product-design' && <ProductDesign />}
+
+            {/* UI/UX Design 独立页面（AccordionGallery 项目画廊） */}
+            {overlay === 'uiux-design' && <UiUxDesign />}
 
             {/* 全局悬浮菜单 */}
             <Menu />

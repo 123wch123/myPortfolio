@@ -20,6 +20,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* 置于底部 LogoLoop 条之上：短视口下卡片与 logo 条重叠时，
+       悬停卡片不会误触发 LogoLoop 的 hover 暂停 */
+    z-index: 2;
 }
 
 .about-card-section .pc-card-wrapper {
@@ -72,6 +75,11 @@
 
 .about-logoloop-section:hover {
     opacity: 1;
+}
+
+/* About 屏不可见时暂停 ProfileCard 的持续 holo 动画，减少后台开销 */
+.about-container:not(.about--visible) .pc-shine {
+    animation-play-state: paused;
 }
 
 /* Timeline 时间线样式 */
@@ -217,6 +225,53 @@
     border-radius: 50%;
     background: var(--accent);
     opacity: 0.7;
+}
+
+/* SOFTWARES 图标卡片 */
+.about-software-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+}
+
+.about-software-item {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 4px 10px;
+    background: var(--bg-surface);
+    border: 1px solid rgba(113, 196, 255, 0.14);
+    border-radius: 10px;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-software-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(113, 196, 255, 0.14);
+}
+
+.about-software-icon {
+    width: min(100%, 48px);
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+.about-software-name {
+    font-size: 11px;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 @media (max-width: 900px) {

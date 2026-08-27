@@ -35,6 +35,8 @@ export interface LogoLoopProps {
     ariaLabel?: string;
     className?: string;
     style?: React.CSSProperties;
+    /** 移出视口时挂起 rAF 动画循环，节省主线程开销（与 Prism 的 suspendWhenOffscreen 语义一致） */
+    suspendWhenOffscreen?: boolean;
 }
 
 const ANIMATION_CONFIG = {
@@ -121,7 +123,8 @@ const useAnimationLoop = (
     seqHeight: number,
     isHovered: boolean,
     hoverSpeed: number | undefined,
-    isVertical: boolean
+    isVertical: boolean,
+    suspended: boolean
 ) => {
     const rafRef = useRef<number | null>(null);
     const lastTimestampRef = useRef<number | null>(null);
@@ -131,6 +134,9 @@ const useAnimationLoop = (
     useEffect(() => {
         const track = trackRef.current;
         if (!track) return;
+
+        // 屏外挂起：不启动 rAF；恢复时 offsetRef/velocityRef 保留，无缝衔接上一次滚动位置
+        if (suspended) return;
 
         const seqSize = isVertical ? seqHeight : seqWidth;
 
@@ -178,7 +184,7 @@ const useAnimationLoop = (
             }
             lastTimestampRef.current = null;
         };
-    }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical]);
+    }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical, suspended]);
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -197,7 +203,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         renderItem,
         ariaLabel = 'Partner logos',
         className,
-        style
+        style,
+        suspendWhenOffscreen = false
     }) => {
         const containerRef = useRef<HTMLDivElement>(null);
         const trackRef = useRef<HTMLDivElement>(null);
@@ -207,6 +214,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         const [seqHeight, setSeqHeight] = useState<number>(0);
         const [copyCount, setCopyCount] = useState<number>(ANIMATION_CONFIG.MIN_COPIES);
         const [isHovered, setIsHovered] = useState<boolean>(false);
+        const [isOnScreen, setIsOnScreen] = useState<boolean>(!suspendWhenOffscreen);
 
         const effectiveHoverSpeed = useMemo(() => {
             if (hoverSpeed !== undefined) return hoverSpeed;
@@ -258,7 +266,37 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 
         useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight, isVertical]);
 
-        useAnimationLoop(trackRef, targetVelocity, seqWidth, seqHeight, isHovered, effectiveHoverSpeed, isVertical);
+        // 可选：屏外时挂起 rAF 循环（与 Prism 的 suspendWhenOffscreen 一致）
+        useEffect(() => {
+            if (!suspendWhenOffscreen) return;
+            const el = containerRef.current;
+            if (!el) return;
+
+            if (typeof IntersectionObserver === 'undefined') {
+                setIsOnScreen(true);
+                return;
+            }
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    setIsOnScreen(entries.some((entry) => entry.isIntersecting));
+                },
+                { root: null, threshold: 0 }
+            );
+            observer.observe(el);
+            return () => observer.disconnect();
+        }, [suspendWhenOffscreen]);
+
+        useAnimationLoop(
+            trackRef,
+            targetVelocity,
+            seqWidth,
+            seqHeight,
+            isHovered,
+            effectiveHoverSpeed,
+            isVertical,
+            suspendWhenOffscreen && !isOnScreen
+        );
 
         const cssVariables = useMemo(
             () =>

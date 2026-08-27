@@ -1,17 +1,32 @@
+import { useEffect, useRef } from 'react';
 import LogoLoop from '@/reactbitComponent/LogoLoop/LogoLoop';
 import ProfileCard from '@/reactbitComponent/ProfileCard/ProfileCard';
-import { SiBlender, SiExpo, SiFigma, SiGithub, SiReact, SiTypescript } from 'react-icons/si';
 import iconPattern from '../../assets/images/logo-glow.png';
 import avatarImg from '../../assets/images/Profile.jpg';
+import gardenLogo from '../../assets/companyLogoLoop/garden.png';
+import nioLogo from '../../assets/companyLogoLoop/nio.png';
+import rabbitpreLogo from '../../assets/companyLogoLoop/rabbitpre.png';
+import samsungLogo from '../../assets/companyLogoLoop/samsung.png';
+import vscodeLogo from '../../assets/softwareLogo/VScode.png';
+import blenderLogo from '../../assets/softwareLogo/blender.png';
+import figmaLogo from '../../assets/softwareLogo/figma.png';
+import githubLogo from '../../assets/softwareLogo/github.png';
+import solidworksLogo from '../../assets/softwareLogo/solidworks.png';
 import './About.css';
 
-const techLogos = [
-    { node: <SiReact />, title: 'React', href: 'https://react.dev' },
-    { node: <SiTypescript />, title: 'TypeScript', href: 'https://www.typescriptlang.org' },
-    { node: <SiGithub />, title: 'GitHub', href: 'https://github.com' },
-    { node: <SiExpo />, title: 'Expo', href: 'https://expo.dev' },
-    { node: <SiFigma />, title: 'Figma', href: 'https://www.figma.com' },
-    { node: <SiBlender />, title: 'Blender', href: 'https://www.blender.org' }
+const companyLogos = [
+    { src: gardenLogo, alt: 'Garden', title: 'Garden' },
+    { src: nioLogo, alt: 'NIO', title: 'NIO', href: 'https://www.nio.com' },
+    { src: rabbitpreLogo, alt: 'RabbitPre', title: 'RabbitPre', href: 'https://www.rabbitpre.com' },
+    { src: samsungLogo, alt: 'Samsung', title: 'Samsung', href: 'https://www.samsung.com' }
+];
+
+const softwares = [
+    { src: figmaLogo, name: 'Figma' },
+    { src: vscodeLogo, name: 'VS Code' },
+    { src: githubLogo, name: 'GitHub' },
+    { src: blenderLogo, name: 'Blender' },
+    { src: solidworksLogo, name: 'SolidWorks' }
 ];
 
 const timeline = [
@@ -38,10 +53,27 @@ const timeline = [
 ];
 
 export default function About() {
+    const aboutRef = useRef<HTMLDivElement>(null);
+
+    // About 屏移出视口时暂停 ProfileCard 的持续 holo 动画，降低后台主线程占用
+    useEffect(() => {
+        const el = aboutRef.current;
+        if (!el || typeof IntersectionObserver === 'undefined') return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                el.classList.toggle('about--visible', entries.some((entry) => entry.isIntersecting));
+            },
+            { root: null, threshold: 0 }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <>
             <div className="page-label">About</div>
-            <div className="about-container">
+            <div ref={aboutRef} className="about-container">
                 <div className="about-card-section">
                     <ProfileCard
                         name="Chuhong Wang"
@@ -80,18 +112,27 @@ export default function About() {
                                 <h3 className="about-skill-title">KEY STRENGTHS</h3>
                                 <ul className="about-skill-list">
                                     <li>User Research & Insight Synthesis</li>
-                                    <li>Interaction & Visual Design</li>
+                                    <li>UI/UX Design</li>
                                     <li>Prototyping & Usability Testing</li>
-                                    <li>Cross-disciplinary Collaboration</li>
+                                    <li>Product Design</li>
                                 </ul>
                             </div>
                             <div className="about-skill-group">
-                                <h3 className="about-skill-title">SOFT SKILLS</h3>
-                                <ul className="about-skill-list">
-                                    <li>Creative Problem Solving</li>
-                                    <li>Adaptability & Fast Learning</li>
-                                    <li>Teamwork & Empathy</li>
-                                </ul>
+                                <h3 className="about-skill-title">SOFTWARES</h3>
+                                <div className="about-software-grid">
+                                    {softwares.map((item) => (
+                                        <div className="about-software-item" key={item.name}>
+                                            <img
+                                                src={item.src}
+                                                alt={item.name}
+                                                className="about-software-icon"
+                                                loading="lazy"
+                                                draggable={false}
+                                            />
+                                            <span className="about-software-name">{item.name}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -99,7 +140,7 @@ export default function About() {
             </div>
             <div className="about-logoloop-section">
                 <LogoLoop
-                    logos={techLogos}
+                    logos={companyLogos}
                     speed={60}
                     direction="left"
                     logoHeight={40}
@@ -107,6 +148,7 @@ export default function About() {
                     hoverSpeed={0}
                     scaleOnHover
                     ariaLabel="Technology partners"
+                    suspendWhenOffscreen
                 />
             </div>
         </>

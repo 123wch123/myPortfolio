@@ -14,7 +14,10 @@ export default function Project() {
                 window.location.hash = '#product-design';
             }
         },
-        { link: '#', text: 'UI/UX DESIGN', image: uiuxImg },
+        { link: '#', text: 'UI/UX DESIGN', image: uiuxImg,
+            onClick: () => {
+                window.location.hash = '#uiux-design';
+            } },
         {
             link: '#',
             text: 'VR DESIGN',

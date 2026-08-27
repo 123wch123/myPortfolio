@@ -1,6 +1,3 @@
-import morePic4 from '@/assets/morePic/670898d47025df565498dd08ee4fdea7.jpg';
-import morePic5 from '@/assets/morePic/a45b046de4f55b9331e10a5cdcda39a2.jpg';
-import morePic6 from '@/assets/morePic/acc03ec49df1e359cc5529f493c51c93.jpg';
 import awood1 from '@/assets/portfolioPic/productDesign/Awood/4-1.png';
 import awood2 from '@/assets/portfolioPic/productDesign/Awood/4-2.png';
 import echorc1 from '@/assets/portfolioPic/productDesign/Echorc/A4 - 26.png';
@@ -45,24 +42,6 @@ const projects: ProductProject[] = [
             'A-Wood is a student project that helps children learn to organize and store their toys while playing.',
         images: [awood1, awood2],
         cover: awoodGallery
-    },
-    {
-        label: 'Health Tracker',
-        description:
-            'A wearable companion app that balances motivation and privacy, with progress rings, streaks and gentle habit nudges.',
-        images: [morePic4]
-    },
-    {
-        label: 'E-commerce Redesign',
-        description:
-            'A conversion-focused redesign of the checkout flow that cuts steps in half while keeping trust, transparency and security front and centre.',
-        images: [morePic5]
-    },
-    {
-        label: 'AI Note-taking',
-        description:
-            'An AI-powered workspace where voice, text and quick sketches converge into structured, searchable notes with minimal friction.',
-        images: [morePic6]
     }
 ];
 
