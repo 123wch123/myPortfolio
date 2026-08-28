@@ -58,8 +58,16 @@
 
 .product-design-footer {
     display: flex;
+    align-items: center;
     justify-content: center;
     padding: 24px 0 60px;
+}
+
+/* 项目详情页底部：有官网链接时两个按钮同一行、间距紧凑 */
+.product-design-footer--split {
+    justify-content: center;
+    gap: 128px;
+    padding: 24px 40px 60px;
 }
 
 /* 项目详情视图 —— 参考 VR Design 的 PDF 式上下翻页展示 */
@@ -101,6 +109,27 @@
     font-size: 16px;
     line-height: 1.9;
     color: rgba(255, 255, 255, 0.75);
+}
+
+.product-detail-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    padding: 10px 24px;
+    border: 1px solid rgba(113, 196, 255, 0.4);
+    border-radius: 24px;
+    color: var(--accent);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.product-detail-link:hover {
+    background: rgba(113, 196, 255, 0.15);
+    border-color: var(--accent);
+    color: #fff;
 }
 
 .product-detail-images {
@@ -174,6 +203,28 @@
     border-color: var(--accent);
 }
 
+.product-detail-link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(113, 196, 255, 0.12);
+    border: 1px solid var(--accent);
+    color: #fff;
+    font-size: 14px;
+    padding: 12px 32px;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.product-detail-link-button:hover {
+    background: rgba(113, 196, 255, 0.25);
+    border-color: var(--accent);
+    color: #fff;
+}
+
 /* 响应式 */
 @media (max-width: 768px) {
     .product-design-header {
@@ -205,6 +256,14 @@
     .product-detail-content {
         padding: 32px 16px 40px;
         gap: 32px;
+    }
+
+    .product-design-footer {
+        padding: 20px 0 48px;
+    }
+
+    .product-design-footer--split {
+        padding: 20px 16px 48px;
     }
 
     .product-detail-title {

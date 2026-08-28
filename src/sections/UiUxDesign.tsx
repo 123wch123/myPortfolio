@@ -20,7 +20,6 @@ import skillUISlide12 from '@/assets/portfolioPic/UIUXdesign/skillUI/Slide 16_9 
 import skillUISlide13 from '@/assets/portfolioPic/UIUXdesign/skillUI/Slide 16_9 - 45.png';
 import skillUISlide14 from '@/assets/portfolioPic/UIUXdesign/skillUI/Slide 16_9 - 46.png';
 import skillUISlide15 from '@/assets/portfolioPic/UIUXdesign/skillUI/Slide 16_9 - 47.png';
-import skillUISlide16 from '@/assets/portfolioPic/UIUXdesign/skillUI/Slide 16_9 - 48.png';
 
 // colvita
 import colvita1 from '@/assets/portfolioPic/UIUXdesign/colvita/A4 - 34.png';
@@ -49,16 +48,7 @@ import iRelish1 from '@/assets/portfolioPic/UIUXdesign/iRelish/Slide 16_9 - 8.pn
 import iRelish2 from '@/assets/portfolioPic/UIUXdesign/iRelish/Slide 16_9 - 9.png';
 
 // nio
-import nioFrame from '@/assets/portfolioPic/UIUXdesign/nio/Frame.png';
 import nio1 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-1.png';
-import nio2 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-2.png';
-import nio3 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-3.png';
-import nio4 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-4.png';
-import nio5 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-5.png';
-import nio6 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-6.png';
-import nio7 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-7.png';
-import nio8 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-8.png';
-import nio9 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-9.png';
 import nio10 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-10.png';
 import nio11 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-11.png';
 import nio12 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-12.png';
@@ -69,10 +59,20 @@ import nio16 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-16.png';
 import nio17 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-17.png';
 import nio18 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-18.png';
 import nio19 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-19.png';
+import nio2 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-2.png';
+import nio3 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-3.png';
+import nio4 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-4.png';
+import nio5 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-5.png';
+import nio6 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-6.png';
+import nio7 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-7.png';
+import nio8 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-8.png';
+import nio9 from '@/assets/portfolioPic/UIUXdesign/nio/Frame-9.png';
+import nioFrame from '@/assets/portfolioPic/UIUXdesign/nio/Frame.png';
 
 // 画廊封面
 import colvitaCover from '@/assets/portfolioPic/UIUXdesign/GalleryPicture/colvita.png';
 import iRelishCover from '@/assets/portfolioPic/UIUXdesign/GalleryPicture/iRelish.png';
+import nioCover from '@/assets/portfolioPic/UIUXdesign/GalleryPicture/nio.png';
 import skillUICover from '@/assets/portfolioPic/UIUXdesign/GalleryPicture/skillUI.png';
 import stillWithMeCover from '@/assets/portfolioPic/UIUXdesign/GalleryPicture/stillWithMe.png';
 
@@ -82,14 +82,17 @@ interface UiUxProject {
     images: string[];
     /** 画廊封面图，缺省时使用 images[0] */
     cover?: string;
+    /** 官网链接：想了解更多时可跳转体验 */
+    link?: string;
 }
 
 // 项目顺序：skillUI → nio → colvita → Still With Me → iRelish
 const projects: UiUxProject[] = [
     {
-        label: 'skillUI',
+        label: 'SkillsUI',
         description:
             'SkillsUI is an AI-native platform enabling agents to execute tasks through dynamic interfaces and cross-system integration.',
+        link: 'https://skillsui.rabbitpre.com.cn/?c=tzgw',
         images: [
             skillUISlide1,
             skillUISlide2,
@@ -106,12 +109,11 @@ const projects: UiUxProject[] = [
             skillUISlide13,
             skillUISlide14,
             skillUISlide15,
-            skillUISlide16,
         ],
         cover: skillUICover
     },
     {
-        label: 'nio',
+        label: 'Nomi 5.0',
         description:
             'An intelligent in-vehicle digital experience concept for NIO, exploring connected cockpit interfaces, interaction flows and design language consistency across the driving journey.',
         images: [
@@ -136,7 +138,7 @@ const projects: UiUxProject[] = [
             nio18,
             nio19,
         ],
-        cover: nioFrame
+        cover: nioCover
     },
     {
         label: 'colvita',
@@ -191,6 +193,16 @@ export default function UiUxDesign() {
                         <div className="product-detail-info">
                             <h2 className="product-detail-title">{selectedProject.label}</h2>
                             <p className="product-detail-desc">{selectedProject.description}</p>
+                            {selectedProject.link && (
+                                <a
+                                    className="product-detail-link"
+                                    href={selectedProject.link}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                >
+                                    Want to know more? Click to visit the official website
+                                </a>
+                            )}
                         </div>
 
                         {/* 参考 Product Design 的 PDF 式展示：垂直堆叠每一页设计稿 */}
@@ -207,10 +219,20 @@ export default function UiUxDesign() {
                         </div>
                     </div>
 
-                    <footer className="product-design-footer">
+                    <footer className={`product-design-footer${selectedProject.link ? ' product-design-footer--split' : ''}`}>
                         <button className="product-detail-back" onClick={() => setSelected(null)}>
                             ← Back to Gallery
                         </button>
+                        {selectedProject.link && (
+                            <a
+                                className="product-detail-link-button"
+                                href={selectedProject.link}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                            >
+                                Visit the Official Website
+                            </a>
+                        )}
                     </footer>
                 </>
             ) : (
