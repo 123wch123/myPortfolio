@@ -193,16 +193,6 @@ export default function UiUxDesign() {
                         <div className="product-detail-info">
                             <h2 className="product-detail-title">{selectedProject.label}</h2>
                             <p className="product-detail-desc">{selectedProject.description}</p>
-                            {selectedProject.link && (
-                                <a
-                                    className="product-detail-link"
-                                    href={selectedProject.link}
-                                    target="_blank"
-                                    rel="noreferrer noopener"
-                                >
-                                    Want to know more? Click to visit the official website
-                                </a>
-                            )}
                         </div>
 
                         {/* 参考 Product Design 的 PDF 式展示：垂直堆叠每一页设计稿 */}

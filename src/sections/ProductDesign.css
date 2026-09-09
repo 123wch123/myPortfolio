@@ -111,27 +111,6 @@
     color: rgba(255, 255, 255, 0.75);
 }
 
-.product-detail-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 4px;
-    padding: 10px 24px;
-    border: 1px solid rgba(113, 196, 255, 0.4);
-    border-radius: 24px;
-    color: var(--accent);
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.product-detail-link:hover {
-    background: rgba(113, 196, 255, 0.15);
-    border-color: var(--accent);
-    color: #fff;
-}
-
 .product-detail-images {
     display: flex;
     flex-direction: column;

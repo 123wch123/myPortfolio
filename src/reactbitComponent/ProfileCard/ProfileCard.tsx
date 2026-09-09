@@ -13,12 +13,8 @@ interface ProfileCardProps {
     enableTilt?: boolean;
     enableMobileTilt?: boolean;
     mobileTiltSensitivity?: number;
-    miniAvatarUrl?: string;
     name?: string;
     title?: string;
-    handle?: string;
-    status?: string;
-    showUserInfo?: boolean;
 }
 
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#1E3A8A8c 0%,#71C4FF44 100%)';
@@ -48,12 +44,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     enableTilt = true,
     enableMobileTilt = false,
     mobileTiltSensitivity = 5,
-    miniAvatarUrl,
     name = 'Javi A. Torres',
-    title = 'Software Engineer',
-    handle = 'javicodes',
-    status = 'Online',
-    showUserInfo = true
+    title = 'Software Engineer'
 }) => {
     const wrapRef = useRef<HTMLDivElement>(null);
     const shellRef = useRef<HTMLDivElement>(null);
@@ -348,28 +340,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                                     t.style.display = 'none';
                                 }}
                             />
-                            {showUserInfo && (
-                                <div className="pc-user-info">
-                                    <div className="pc-user-details">
-                                        <div className="pc-mini-avatar">
-                                            <img
-                                                src={miniAvatarUrl || avatarUrl}
-                                                alt={`${name || 'User'} mini avatar`}
-                                                loading="lazy"
-                                                onError={e => {
-                                                    const t = e.target as HTMLImageElement;
-                                                    t.style.opacity = '0.5';
-                                                    t.src = avatarUrl;
-                                                }}
-                                            />
-                                        </div>
-                                        <div className="pc-user-text">
-                                            <div className="pc-handle">@{handle}</div>
-                                            <div className="pc-status">{status}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
                         </div>
                         <div className="pc-content">
                             <div className="pc-details">

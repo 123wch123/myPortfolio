@@ -1,17 +1,17 @@
-import { useEffect, useRef } from 'react';
 import LogoLoop from '@/reactbitComponent/LogoLoop/LogoLoop';
 import ProfileCard from '@/reactbitComponent/ProfileCard/ProfileCard';
-import iconPattern from '../../assets/images/logo-glow.png';
-import avatarImg from '../../assets/images/Profile.jpg';
+import { useEffect, useRef } from 'react';
 import gardenLogo from '../../assets/companyLogoLoop/garden.png';
 import nioLogo from '../../assets/companyLogoLoop/nio.png';
 import rabbitpreLogo from '../../assets/companyLogoLoop/rabbitpre.png';
 import samsungLogo from '../../assets/companyLogoLoop/samsung.png';
-import vscodeLogo from '../../assets/softwareLogo/VScode.png';
+import iconPattern from '../../assets/images/logo-glow.png';
+import avatarImg from '../../assets/images/Profile.jpg';
 import blenderLogo from '../../assets/softwareLogo/blender.png';
 import figmaLogo from '../../assets/softwareLogo/figma.png';
 import githubLogo from '../../assets/softwareLogo/github.png';
 import solidworksLogo from '../../assets/softwareLogo/solidworks.png';
+import vscodeLogo from '../../assets/softwareLogo/VScode.png';
 import './About.css';
 
 const companyLogos = [
@@ -78,8 +78,6 @@ export default function About() {
                     <ProfileCard
                         name="Chuhong Wang"
                         title=" "
-                        handle="chuhongwang"
-                        status="Online"
                         avatarUrl={avatarImg}
                         iconUrl={iconPattern}
                         behindGlowEnabled
@@ -118,7 +116,7 @@ export default function About() {
                                 </ul>
                             </div>
                             <div className="about-skill-group">
-                                <h3 className="about-skill-title">SOFTWARES</h3>
+                                <h3 className="about-skill-title">SOFTWARES & SKILLS</h3>
                                 <div className="about-software-grid">
                                     {softwares.map((item) => (
                                         <div className="about-software-item" key={item.name}>
